@@ -9,7 +9,7 @@ set(NVAL   9 19)
 set(NRHS   2)
 set(LWORK  0 10000000)
 
-function(add_superlu_test input target)
+function(add_superlu_test output input target)
   set(TEST_INPUT "${SuperLU_SOURCE_DIR}/EXAMPLE/${input}")
 
   foreach (s ${NRHS})
@@ -44,7 +44,7 @@ if(enable_single)
                  sdrive.c sgst01.c sgst02.c sgst04.c sgst07.c
                  sp_ienv.c sp_sconvert.c)
   target_link_libraries(s_test ${test_link_libs})
-  add_superlu_test(s_test g20.rua)
+  add_superlu_test(s_test g20.rua s_test)
 endif()
 
 
@@ -53,7 +53,7 @@ if(enable_double)
                  ddrive.c dgst01.c dgst02.c dgst04.c dgst07.c
                  sp_ienv.c sp_dconvert.c)
   target_link_libraries(d_test ${test_link_libs})
-  add_superlu_test(d_test g20.rua)
+  add_superlu_test(d_test g20.rua d_test)
 endif()
 
 if(enable_complex)
@@ -61,7 +61,7 @@ if(enable_complex)
                  cdrive.c cgst01.c cgst02.c cgst04.c cgst07.c
                  sp_ienv.c sp_cconvert.c)
   target_link_libraries(c_test ${test_link_libs})
-  add_superlu_test(c_test cg20.cua)
+  add_superlu_test(c_test cg20.cua c_test)
 endif()
 
 
@@ -70,5 +70,5 @@ if(enable_complex16)
                  zdrive.c zgst01.c zgst02.c zgst04.c zgst07.c
                  sp_ienv.c sp_zconvert.c)
   target_link_libraries(z_test ${test_link_libs})
-  add_superlu_test(z_test cg20.cua)
+  add_superlu_test(z_test cg20.cua z_test)
 endif()
