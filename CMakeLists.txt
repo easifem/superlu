@@ -85,7 +85,7 @@ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
 set(CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
 
 #---- For shared library
-if (BUILD_SHARED_LIBS)
+if (BUILD_SHARED_LIBS OR CMAKE_BUILD_SHARED_LIBS)
   message("-- SuperLU will be built as a shared library.")
   set(PROJECT_NAME_LIB_EXPORT libsuperlu.so)
 else()
